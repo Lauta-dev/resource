@@ -19,6 +19,7 @@ jobs:
           urls_input_file: actions/pages.yml
           type: webp
           quality: 75
+          output_dir: "."
 
       - name: Agregar captura de pantalla
         run: |
