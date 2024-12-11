@@ -1,5 +1,7 @@
 name: Take screenshot
-on: [push]
+on:
+  repository_dispatch:
+    types: [push-event]
 
 jobs:
   screenshots:
