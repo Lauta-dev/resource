@@ -1,9 +1,5 @@
 name: Take screenshot
-on:
-  workflow_run:
-    workflows: [pages-build-deployment]
-    types: [completed]
-    branches: [main]
+on: [push]
 
 jobs:
   screenshots:
