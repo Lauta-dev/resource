@@ -1,0 +1,34 @@
+name: Take screenshot
+on:
+  workflow_run:
+    workflows: [pages-build-deployment]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+     
+      - name: Set up Git
+        run: |
+          git config user.name "${{ secrets.GH_USERNAME }}"
+          git config user.email "${{ secrets.GH_MAIL }}"
+      
+      - name: Generar imgenes
+        uses: lauta-dev/website-screenshot-capture-action@main
+        with:
+          urls_input_file: actions/pages.yml
+          type: webp
+          quality: 75
+
+      - name: Agregar captura de pantalla
+        run: |
+          git add .
+          git commit -m "Agregar captura de pantalla"
+      
+      - name: Push changes
+        run: |
+          git push origin main
