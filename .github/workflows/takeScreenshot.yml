@@ -1,5 +1,7 @@
 name: Take screenshot
-on: [workflow_dispatch]
+on:
+  repository_dispatch:
+    types: [on]
 
 jobs:
   screenshots:
